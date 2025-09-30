@@ -1,0 +1,3 @@
+sort(v.begin(), v.end()); //non-decreasing
+
+sort(v.rbegin(), v.rend()); // non _increasing
