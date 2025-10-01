@@ -1,0 +1,15 @@
+Formatting a String (ver. 2)
+
+You are given a string to reformat. The string consists of characters of letters, digits, spaces and/or dashes. The string always contains at least two alphanumeric characters. Spaces and dashes in the string should be ignored. We want to reformat the string so that the characters are grouped in blocks of three, separated by single spaces. If necessary, the final block or the last two blocks can be of length two. Additionally we want to add one semicolon character at the end.
+
+Examples:
+
+Given string S = "AA--44 BB 55CD 83FG", we would like to format it as "AAA 4BB 55C D83 FG;"
+Given S = "00--44 48 5555 8361", the function should return "004 448 555 583 61;"
+Given S = "0--22 1985--824", the function should return "022 198 582 4;"
+Given S = "ABC3726B4", the function should return "ABC 372 6B4;"
+Constraints:
+
+N is an integer within the range [2...100]
+String S consists only of upper or lower case letters (a-zA-Z), digits (0-9), spaces and/or dashes (-)
+String S contains at least two characters
