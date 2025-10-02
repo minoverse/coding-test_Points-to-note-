@@ -13,3 +13,21 @@ Constraints:
 N is an integer within the range [2...100]
 String S consists only of upper or lower case letters (a-zA-Z), digits (0-9), spaces and/or dashes (-)
 String S contains at least two characters
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+formatString(string s) {
+    int length =  s.length();
+    if (length % 3 == 1) {
+        for(int i = 0; i < length; i++) {
+            
+        }
+    }
+}
+int main() {
+    sync_with_stdio(false);
+    cin.tie(nullptr);
+}
