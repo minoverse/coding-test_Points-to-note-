@@ -1,0 +1,113 @@
+auto p vs auto &p (and const auto &p)
+
+auto p
+
+Copy of each element.
+
+Safe to read/modify the copy, but changes do not affect the container.
+
+Extra cost (copies a pair<const K, V> for maps).
+
+auto &p
+
+Reference to the actual element stored in the container.
+
+No copy → faster.
+
+Modifying p modifies the container element.
+
+const auto &p
+
+Const reference.
+
+No copy, but you can’t modify the element—great for read-only loops.
+
+
+
+unordered_map<int,int> freq{{3,2},{5,4}};
+
+for (auto p : freq) {      // copies
+    p.second += 10;        // only the copy changes
+}
+
+for (auto &p : freq) {     // references
+    p.second += 10;        // container values change
+}
+
+// read-only, no copies:
+for (const auto &p : freq) {
+    // use p.first, p.second
+}
+
+map<K,V>	Sorted by key	O(log n) always	lower	Stable order; good for range queries & ordered traversal
+unordered_map<K,V>	Hash table with 	No defined order	O(1) average, O(n) worst	higher
+
+.first and .second in maps
+
+Elements are stored as std::pair<const K, V>.
+
+.first → the key (const K)
+
+const: you cannot assign to it (keys mustn’t change; it would break the structure).
+
+.second → the mapped value (V)
+
+You can read/write it.
+
+Example:
+
+unordered_map<int,int> freq;
+freq[3] = 4;
+
+// p is pair<const int,int>
+for (auto &p : freq) {
+    // p.first = 10;      //  compile error (key is const)
+    p.second += 1;         // ✅ ok (update value)
+}
+
+Iterating (three idioms)
+
+Range-based with auto & (fast & clear)
+
+for (auto &p : freq) {
+    // p.first (key), p.second (value)
+}
+
+
+Explicit iterator
+
+for (unordered_map<int,int>::iterator it = freq.begin(); it != freq.end(); ++it) {
+    // it->first, it->second
+}
+
+
+Structured bindings (C++17+) 
+
+for (auto &[key, value] : freq) {   // reference binding
+    value += 1;
+}
+for (const auto &[key, value] : freq) { // read-only
+    // use key, value
+}
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    vector<int> arr = {3,3,3,3,5,5,5,2,2,7};
+
+    unordered_map<int,int> freq;
+    for (int x : arr) freq[x]++;            // O(1) avg per insert
+
+    // Read-only pass (no copies)
+    for (const auto &p : freq) {
+        cout << "key=" << p.first << ", count=" << p.second << "\n";
+    }
+
+    // Modify values in-place
+    for (auto &[k, v] : freq) v += 100;
+
+    // Show results again
+    for (const auto &[k, v] : freq) {
+        cout << k << " => " << v << "\n";
+    }
+}
