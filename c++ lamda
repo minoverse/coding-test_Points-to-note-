@@ -1,0 +1,15 @@
+[capture](parameters) -> return_type {
+    // function body
+}
+capture: variables from the surrounding scope you want to use inside.
+
+parameters: arguments like a normal function.
+
+return_type: usually deduced automatically (so you don’t write it).
+
+body: what the function does.
+// example: when i want sort 2d int vecotr non decreasing order based on their starting value
+sort(intervals.begin(), intervals.end(),
+     [](const vector<int>& a, const vector<int>& b){
+         return a[0] < b[0];
+     });
