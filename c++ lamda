@@ -1,7 +1,7 @@
 [capture](parameters) -> return_type {
     // function body
 }
-capture: variables from the surrounding scope you want to use inside.
+//capture: variables from the surrounding scope you want to use inside.
 
 parameters: arguments like a normal function.
 
