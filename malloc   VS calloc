@@ -1,4 +1,4 @@
-# ⚙️ Malloc vs. Calloc: A Comparison of Efficiency
+# Malloc vs. Calloc: A Comparison of Efficiency
 
 The primary difference in efficiency between `malloc` and `calloc` stems from one function's requirement to **initialize memory to zero**.
 
