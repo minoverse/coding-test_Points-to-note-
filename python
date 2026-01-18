@@ -1,0 +1,39 @@
+'U' * 3 -> "UUU" (문자열)['U'] * 3 -> ['U', 'U', 'U'] (리스트)
+방법 A: 리스트끼리 더하기 (추천)
+Python
+
+# [리스트] + [리스트]
+res_list = ['U'] * (len(start_path) - i) + dest_path[i:]
+return ''.join(res_list)
+
+#문자열로 처리할지, 리스트로 처리할지 헷갈릴 때 가장 안전하고 빠른 방법은 **"리스트로 다 모은 뒤 마지막에 join 한다"**. (인터뷰에서 하나만 선택!)가장 추천하는 방법은 방법 A: 리스트끼리 더하기 (추천)Python# [리스트] + [리스트]
+res_list = ['U'] * (len(start_path) - i) + dest_path[i:]
+return ''.join(res_list)
+방법 B: 문자열끼리 더하기Python# "문자열" + "문자열"
+u_part = 'U' * (len(start_path) - i)
+dest_part = ''.join(dest_path[i:])
+return u_part + dest_part
+
+위상정렬(Topological Sort)
+defaultdict(list)	그래프 인접 리스트 만들 때	[]
+defaultdict(int)	개수를 세는 카운터, In-degree 계산할 때	0
+defaultdict(set)	중복을 제거하며 데이터를 모을 때	set()
+
+면접이나 코테에서 다음과 같은 키워드나 상황이 보이면 위상 정렬을 떠올려야 합니다.
+
+의존성 관계: "A를 하기 위해서 B를 먼저 해야 한다"는 조건이 있을 때 (예: 선수과목, 컴파일 순서)
+
+순서 결정: 여러 작업 사이의 우선순위가 주어지고, 전체적인 작업 순서를 정해야 할 때
+
+사이클 없는 유향 그래프(DAG): 방향은 있지만 순환(Cycle)은 없는 구조일 때
+
+진입 차수(In-degree): 특정 노드로 들어오는 간선의 개수를 파악하여 0인 것부터 처리해야 할 때
+
+from collections import deque, defaultdict
+
+특징       List (리스트),                 Set (셋),                  Dictionary (딕셔너리)
+구조  순서가 있는 요소들의 나열    값(Value)들의 집합               키(Key)-값(Value)의 쌍
+탐색  시간O(N) (전체 탐색 필요)    O(1) (해시 테이블 활용)           O(1) (해시 테이블 활용)
+중복,허용함,                          허용하지 않음                Key 중복 불가 (Value는 가능)
+주요 용도,순차적 데이터 저장     "존재 여부 확인, 중복 제거"    "관계 저장, 데이터 매핑 및 조회"
+선언 예시,"arr = [1, 2, 3]",      "s = set([1, 2, 3])",                   "d = {'A': 1, 'B': 2}"
