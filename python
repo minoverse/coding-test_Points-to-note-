@@ -30,7 +30,7 @@ defaultdict(set)	중복을 제거하며 데이터를 모을 때	set()
 진입 차수(In-degree): 특정 노드로 들어오는 간선의 개수를 파악하여 0인 것부터 처리해야 할 때
 
 from collections import deque, defaultdict
-
+h, m = map(int, time.split(':')) # : 기주능로 분리 스트링을 인트 시간 분단위로 나눠서 할당 
 특징       List (리스트),                 Set (셋),                  Dictionary (딕셔너리)
 구조  순서가 있는 요소들의 나열    값(Value)들의 집합               키(Key)-값(Value)의 쌍
 탐색  시간O(N) (전체 탐색 필요)    O(1) (해시 테이블 활용)           O(1) (해시 테이블 활용)
