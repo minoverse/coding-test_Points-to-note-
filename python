@@ -94,3 +94,4 @@ nodes['A'].add('B')
 nodes['A'].add('B') # 중복이라 한 번만 들어감
 # 결과: {'A': {'B'}}
 defaultdict없는 키 접근 시 자동 생성std::map의 [] 연산자 자동 생성 기능zip리스트 두 개를 하나로 묶기두 배열을 동일한 i 인덱스로 참조하는 것items()딕셔너리 키/값 쌍 꺼내기std::map 순회 시 iterator->first, second
+words.sort(key=len)
