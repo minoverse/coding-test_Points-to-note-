@@ -37,3 +37,60 @@ h, m = map(int, time.split(':')) # : 기주능로 분리 스트링을 인트 시
 중복,허용함,                          허용하지 않음                Key 중복 불가 (Value는 가능)
 주요 용도,순차적 데이터 저장     "존재 여부 확인, 중복 제거"    "관계 저장, 데이터 매핑 및 조회"
 선언 예시,"arr = [1, 2, 3]",      "s = set([1, 2, 3])",                   "d = {'A': 1, 'B': 2}"
+
+1. defaultdict(dict) : 자동 초기화 딕셔너리일반 딕셔너리는 없는 키를 조회하면 KeyError가 발생합니다. 
+하지만 defaultdict는 **"키가 없으면 내가 정해준 기본값으로 일단 만들어줘"**라는 뜻입니다.
+graph = defaultdict(dict): "새로운 키가 들어오면 기본값으로 **빈 딕셔너리({})**를 생성해라"는 의미입니다.
+왜 쓰나요? 그래프를 만들 때 a에서 b로 가는 경로를 넣으려면 graph["a"]["b"] = 2.0이라고 써야 합니다.
+이때 graph["a"]가 없으면 에러가 나는데, defaultdict를 쓰면 자동으로 graph["a"] = {}를 먼저 만들어주어 코드가 매우 간결해집니다.
+2. zip(equations, values) : 두 리스트를 병렬로 묶기두 개의 리스트를 마치 **지퍼(Zip)**를 올리듯이 같은 인덱스끼리 짝을 지어주는 함수입니다.
+예시:equations = [["a", "b"], ["b", "c"]]values = [2.0, 3.0]zip 결과: ([["a", "b"], 2.0], [["b", "c"], 3.0]) 형태의 묶음이 됩니다.
+활용: for (u, v), val in zip(equations, values): 라고 쓰면 첫 번째 루프에서 u="a", v="b", val=2.0을 한 번에 가져올 수 있습니다.
+3. graph[curr].items() : 키(Key)와 값(Value) 동시 추출딕셔너리에 들어있는 데이터를 **"이름(Key)과 내용(Value)"**의 쌍으로 꺼내올 때 사용합니다.
+graph[curr]: 현재 노드에 연결된 정보인 {"이웃노드": 가중치} 딕셔너리입니다..items(): 이 딕셔너리에서 (이웃노드, 가중치) 묶음들을 리스트 형태로 반환합니다.
+비교:for x in graph[curr]: $\rightarrow$ x에는 **이름(neighbor)**만 들어옵니다.
+for x, y in graph[curr].items(): $\rightarrow$ x에는 이름, y에는 **수치(weight)**가 들어옵니다.
+defaultdict는 dict뿐만 아니라 다양한 형태로 초기화가 가능합니다! defaultdict(생성자) 괄호 안에 어떤 함수(타입)를 넣느냐에 따라 기본값이 결정됩니다.
+
+자주 쓰이는 유형들을 정리해 드릴게요.
+
+1. defaultdict(list) : 리스트로 초기화
+가장 많이 쓰이는 형태입니다. 일대다(1:N) 관계를 만들 때 필수입니다.
+
+용도: 그래프의 인접 리스트, 그룹화
+
+동작: 키가 없으면 빈 리스트([])를 생성합니다. 바로 .append()를 쓸 수 있어 편리합니다.
+
+Python
+
+from collections import defaultdict
+
+names = defaultdict(list)
+names['성'].append('김') # '성'이라는 키가 없어도 바로 append 가능
+# 결과: {'성': ['김']}
+2. defaultdict(int) : 숫자로 초기화
+카운터(Counter)를 만들 때 유용합니다.
+
+용도: 개수 세기, 누적 합산
+
+동작: 키가 없으면 숫자 0을 생성합니다. 바로 += 1을 쓸 수 있습니다.
+
+Python
+
+counts = defaultdict(int)
+counts['사과'] += 1 # 0에서 시작해서 1이 됨
+# 결과: {'사과': 1}
+3. defaultdict(set) : 집합으로 초기화
+중복을 허용하지 않는 관계를 만들 때 씁니다.
+
+용도: 중복 제거된 연결 노드 관리
+
+동작: 키가 없으면 빈 집합(set())을 생성합니다.
+
+Python
+
+nodes = defaultdict(set)
+nodes['A'].add('B')
+nodes['A'].add('B') # 중복이라 한 번만 들어감
+# 결과: {'A': {'B'}}
+defaultdict없는 키 접근 시 자동 생성std::map의 [] 연산자 자동 생성 기능zip리스트 두 개를 하나로 묶기두 배열을 동일한 i 인덱스로 참조하는 것items()딕셔너리 키/값 쌍 꺼내기std::map 순회 시 iterator->first, second
