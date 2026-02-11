@@ -110,3 +110,26 @@ def longestStrChain(self, words: List[str]) -> int:
             max_chain = max(max_chain, current_chain)
         
         return max_chain
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        # 1. Create a dummy node to act as a handle
+        dummy = ListNode(0)
+        curr = dummy
+        
+        # 2. While both lists have nodes, pick the smaller value
+        while list1 and list2:
+            if list1.val <= list2.val:
+                curr.next = list1
+                list1 = list1.next
+            else:
+                curr.next = list2
+                list2 = list2.next
+            
+            # Move our worker pointer forward
+            curr = curr.next
+        
+        # 3. If one list runs out, attach the rest of the other list
+        curr.next = list1 if list1 else list2
+            
+        # 4. Return the head (the node after our dummy)
+        return dummy.next
