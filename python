@@ -129,6 +129,21 @@ class Solution:
             curr = curr.next
         
         # 3. If one list runs out, attach the rest of the other list
+# Move until we find a letter (Skip spaces, symbols, numbers)
+while i < n and not s[i].isalpha():
+    i += 1
+
+start = i
+
+# Move until we hit something that is NOT a letter (The end of the word)
+while i < n and s[i].isalpha():
+    i += 1
+If you want to do it manually (without .isalpha()):
+You must check the Lowercase range and the Uppercase range separately:
+
+Python
+while i < n and (('a' <= s[i] <= 'z') or ('A' <= s[i] <= 'Z')):
+    i += 1
         curr.next = list1 if list1 else list2
             
         # 4. Return the head (the node after our dummy)
