@@ -170,3 +170,16 @@ chars = list(s) # ['h', 'e', 'l', 'l', 'o']
 chars[0], chars[4] = chars[4], chars[0] # SWAP!
 s = "".join(chars) # "oellh"
         return dummy.next
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        curr = dummy
+        
+        while curr.next:
+            if curr.next.val == val:
+                curr.next = curr.next.next
+            else:
+                curr = curr.next
+        
+        # This ensures you return the first node that DIDN'T match 'val'
+        return dummy.next
