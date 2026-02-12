@@ -147,4 +147,26 @@ while i < n and (('a' <= s[i] <= 'z') or ('A' <= s[i] <= 'Z')):
         curr.next = list1 if list1 else list2
             
         # 4. Return the head (the node after our dummy)
+
+Reading is OK ✅
+You can look at any character you want:
+
+Python
+s = "hello"
+print(s[0]) # Output: "h"
+2. Changing is NOT OK ❌
+If you try to swap characters directly in the string, Python will throw an error:
+
+Python
+s = "hello"
+s[0] = "b" # CRASH: TypeError: 'str' object does not support item assignment
+3. Swapping logic comparison
+Because of this "Read-Only" rule, you have to use a List to perform a swap.
+
+The "List" way (Correct):
+
+Python
+chars = list(s) # ['h', 'e', 'l', 'l', 'o']
+chars[0], chars[4] = chars[4], chars[0] # SWAP!
+s = "".join(chars) # "oellh"
         return dummy.next
