@@ -180,6 +180,7 @@ class Solution:
                 curr.next = curr.next.next
             else:
                 curr = curr.next
-        
+!!!!!sort and sorted diffrent!!!!
+        nums1.sort()	sorted(nums1)
         # This ensures you return the first node that DIDN'T match 'val'
         return dummy.next
