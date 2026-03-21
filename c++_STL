@@ -38,6 +38,8 @@ vector<int> v(n, 0); v.push_back(5); v.pop_back();
 vector<vector<int>> grid(n, vector<int>(m, 0));
 //빠른 조회를 위해 vector를 unordered_set으로 변환 (O(1) search)
 unordered_set<int> delete_set(to_delete.begin(), to_delete.end());
+delete_set.count(key):
+값이 있으면 1, 없으면 0을 반환
 // ---- String ----
 string s="abc";
 reverse(s.begin(), s.end());
